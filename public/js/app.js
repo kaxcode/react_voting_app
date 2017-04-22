@@ -1,29 +1,28 @@
-const ProductList = React.createClass({
-  render: function () {
-    const product = Data[0];
+class ProductList extends React.Component {
+  render() {
+    const product = Seed.products[0];
     return (
-      <div className='ui items'>
+      <div className='ui unstackable items'>
         <Product
-          id={product.id}
-          title={product.title}
-          description={product.description}
-          url={product.url}
-          votes={product.votes}
-          submitter_avatar_url={product.submitter_avatar_url}
-          product_image_url={product.product_image_url}
+        id={product.id}
+        title={product.title}
+        description={product.description}
+        url={product.url}
+        votes={product.votes}
+        submitterAvatarUrl={product.submitterAvatarUrl}
+        productImageUrl={product.productImageUrl}
         />
       </div>
     );
-  },
-});
+  }
+}
 
-
-const Product = React.createClass({
-  render: function () {
+class Product extends React.Component {
+  render() {
     return (
       <div className='item'>
         <div className='image'>
-          <img src={this.props.product_image_url} />
+          <img src={this.props.productImageUrl} />
         </div>
         <div className='middle aligned content'>
           <div className='header'>
@@ -36,20 +35,22 @@ const Product = React.createClass({
             <a href={this.props.url}>
               {this.props.title}
             </a>
+            <p>
+            {this.props.description}
+            </p>
           </div>
           <div className='extra'>
             <span>Submitted by:</span>
             <img
               className='ui avatar image'
-              src={this.props.submitter_avatar_url}
+              src={this.props.submitterAvatarUrl}
             />
           </div>
         </div>
       </div>
     );
-  },
-});
-
+  }
+}
 
 ReactDOM.render(
   <ProductList />,
