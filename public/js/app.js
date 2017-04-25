@@ -1,7 +1,11 @@
 
 class ProductList extends React.Component {
-  handleProductUpVote(productId) {
-    console.log(productId + ' was upvoted.');
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      products: [],
+    };
   }
 
   render() {
