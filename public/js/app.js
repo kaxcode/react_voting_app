@@ -7,6 +7,10 @@ class ProductList extends React.Component {
       products: [],
     };
   }
+  
+  componentDidMount() {
+    this.setState({ products: Seed.products });
+  }
 
   render() {
       const products = this.state.products.sort((a, b) => (
