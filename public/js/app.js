@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign, operator-assignment */
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -6,6 +7,8 @@ class ProductList extends React.Component {
     this.state = {
       products: [],
     };
+
+    this.handleProductUpVote = this.handleProductUpVote.bind(this);
   }
 
   componentDidMount() {
@@ -27,9 +30,9 @@ class ProductList extends React.Component {
       products: nextProducts,
     });
   }
-  
+
   render() {
-      const products = this.state.products.sort((a, b) => (
+    const products = this.state.products.sort((a, b) => (
       b.votes - a.votes
     ));
     const productComponents = products.map((product) => (
@@ -60,7 +63,6 @@ class Product extends React.Component {
     this.handleUpVote = this.handleUpVote.bind(this);
   }
 
-  // Inside `Product`
   handleUpVote() {
     this.props.onVote(this.props.id);
   }
@@ -71,7 +73,6 @@ class Product extends React.Component {
         <div className='image'>
           <img src={this.props.productImageUrl} />
         </div>
-        {/* Inside `render` for Product` */}
         <div className='middle aligned content'>
           <div className='header'>
             <a onClick={this.handleUpVote}>
