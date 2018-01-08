@@ -1,5 +1,9 @@
 
 class ProductList extends React.Component {
+	handleProdcutUpVote(productId) {
+		console.log(productId + ' was upvoted.');
+	}
+	
 	render() {
 	  const products = Seed.products.sort((a, b) => (
 		b.votes - a.votes
@@ -14,6 +18,7 @@ class ProductList extends React.Component {
 		  votes={product.votes}
 		  submitterAvatarUrl={product.submitterAvatarUrl}
 		  productImageUrl={product.productImageUrl}
+			onVote={this.handleProdcutUpVote}
 		/>
 	  ));
 	  return (
@@ -25,38 +30,42 @@ class ProductList extends React.Component {
   }
   
   class Product extends React.Component {
-	render() {
-	  return (
-		<div className='item'>
-		  <div className='image'>
-			<img src={this.props.productImageUrl} />
-		  </div>
-		  <div className='middle aligned content'>
-			<div className='header'>
-			  <a>
-				<i className='large caret up icon' />
-			  </a>
-			  {this.props.votes}
+		handleUpVote() {
+			this.props.onVote(this.props.id);
+		}
+
+		render() {
+			return (
+			<div className='item'>
+				<div className='image'>
+				<img src={this.props.productImageUrl} />
+				</div>
+				<div className='middle aligned content'>
+				<div className='header'>
+					<a onClick={this.handleUpVote}>
+					<i className='large caret up icon' />
+					</a>
+					{this.props.votes}
+				</div>
+				<div className='description'>
+					<a href={this.props.url}>
+					{this.props.title}
+					</a>
+					<p>
+					{this.props.description}
+					</p>
+				</div>
+				<div className='extra'>
+					<span>Submitted by:</span>
+					<img
+					className='ui avatar image'
+					src={this.props.submitterAvatarUrl}
+					/>
+				</div>
+				</div>
 			</div>
-			<div className='description'>
-			  <a href={this.props.url}>
-				{this.props.title}
-			  </a>
-			  <p>
-				{this.props.description}
-			  </p>
-			</div>
-			<div className='extra'>
-			  <span>Submitted by:</span>
-			  <img
-				className='ui avatar image'
-				src={this.props.submitterAvatarUrl}
-			  />
-			</div>
-		  </div>
-		</div>
-	  );
-	}
+			);
+		}
   }
   
   ReactDOM.render(
