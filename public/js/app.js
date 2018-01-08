@@ -6,6 +6,8 @@ class ProductList extends React.Component {
 		this.state = {
 			products: [],
 		};
+
+		this.handleProdcutUpVote = this.handleProdcutUpVote.bind(this);
 	}
 
 	componentDidMount() {
